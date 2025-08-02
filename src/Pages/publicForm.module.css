@@ -19,6 +19,88 @@
   flex-direction: column;
   gap: 1.5rem;
 }
+.chatContainer {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.chatView {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chatPair {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.answer {
+  color: #333;
+}
+
+.inputWrapper {
+  margin-top: 8px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nextButton {
+  align-self: flex-end;
+  padding: 10px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.loading,
+.thankyou {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 60px;
+}
+
 
 .chatPair {
   display: flex;

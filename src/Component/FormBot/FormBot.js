@@ -45,8 +45,7 @@ const FormBot = () => {
     if (success) {
 
     // Copy public link to clipboard
-    const form = formName.replace(/\s+/g, "").toLowerCase();
-    const formLink = `${window.location.origin}/${form}`;
+    const formLink = `${window.location.origin}/${encodeURIComponent(formName)}`;
     navigator.clipboard.writeText(formLink);
     toast.info("Public form link copied to clipboard 📋");
   } else {

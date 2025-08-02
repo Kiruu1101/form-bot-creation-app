@@ -11,18 +11,31 @@ const PublicForm = () => {
   const [formData, setFormData] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchForm = async () => {
       try {
-        const res = await fetch(`${DB_URL}/forms/${formName}.json`);
-        const data = await res.json();
-        if (data?.fields) {
-          setFields(data.fields);
-          setTitle(data.meta?.title || "Untitled Form");
+        const [metaRes, fieldsRes] = await Promise.all([
+          fetch(`${DB_URL}/forms/${formName}/meta.json`),
+          fetch(`${DB_URL}/forms/${formName}/fields.json`)
+        ]);
+
+        const [meta, fields] = await Promise.all([
+          metaRes.json(),
+          fieldsRes.json()
+        ]);
+
+        if (Array.isArray(fields)) {
+          setFields(fields);
+          setTitle(meta?.title || "Untitled Form");
+        } else {
+          console.warn("Invalid fields format or empty form.");
         }
       } catch (err) {
         console.error("Failed to load form", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -53,7 +66,8 @@ const PublicForm = () => {
     }
   };
 
-  if (!fields.length) return <p className={styles.loading}>Loading form...</p>;
+  if (loading) return <p className={styles.loading}>Loading form...</p>;
+  if (!fields.length) return <p className={styles.loading}>Form not found or has no fields.</p>;
   if (submitted) return <p className={styles.thankyou}>✅ Thank you! Your response has been recorded.</p>;
 
   const field = fields[currentStep];
@@ -62,7 +76,7 @@ const PublicForm = () => {
     <div className={styles.chatContainer}>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.chatView}>
-        {/* Display previous Q/A */}
+        {/* Previous Q/A */}
         {fields.slice(0, currentStep).map((f, i) => (
           <div key={i} className={styles.chatPair}>
             <div className={styles.question}>{f.label}</div>
@@ -70,7 +84,7 @@ const PublicForm = () => {
           </div>
         ))}
 
-        {/* Display current field */}
+        {/* Current field */}
         <div className={styles.chatPair}>
           <div className={styles.question}>{field.label}</div>
           <div className={styles.inputWrapper}>
@@ -105,7 +119,7 @@ const PublicForm = () => {
           </div>
         </div>
 
-        {/* Next / Submit button */}
+        {/* Next or Submit button */}
         <button onClick={handleNext} className={styles.nextButton}>
           {currentStep === fields.length - 1 ? "📤 Submit" : "➡️ Next"}
         </button>
