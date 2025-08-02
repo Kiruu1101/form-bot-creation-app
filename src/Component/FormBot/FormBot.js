@@ -11,9 +11,7 @@ const FormBot = () => {
   const [fields, setFields] = useState([]);
   const [showResponses, setShowResponses] = useState(false);
 
-  useEffect(() => {
-    if (formName) loadForm();
-  }, [formName, loadForm]);
+  
 
   const loadForm = async () => {
     const form = await getFormFromDB(formName);
@@ -22,6 +20,11 @@ const FormBot = () => {
       setFields(form.fields || []);
     }
   };
+  
+// eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (formName) loadForm();
+  }, [formName]);
 
   const addField = (type) => {
     setFields((prev) => [...prev, { type, label: "", id: Date.now() }]);

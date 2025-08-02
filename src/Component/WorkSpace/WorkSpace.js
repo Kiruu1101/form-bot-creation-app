@@ -19,16 +19,20 @@ const WorkSpace = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [formInput, setFormInput] = useState("");
 
-  useEffect(() => {
-  if (!user) navigate("/login");
-  else getForms();
-}, [user, navigate, getForms]);
+  
+  
 
 
   const getForms = async () => {
     const formList = await fetchForms(user);
     dispatch(setForms(formList || []));
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+  if (!user) navigate("/login");
+  else getForms();
+}, [user,navigate, getForms]);
 
   const handleLogout = () => {
     dispatch(logout());
