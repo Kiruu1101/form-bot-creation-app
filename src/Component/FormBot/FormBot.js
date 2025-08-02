@@ -13,7 +13,7 @@ const FormBot = () => {
 
   useEffect(() => {
     if (formName) loadForm();
-  }, [formName]);
+  }, [formName, loadForm]);
 
   const loadForm = async () => {
     const form = await getFormFromDB(formName);
