@@ -20,9 +20,10 @@ const WorkSpace = () => {
   const [formInput, setFormInput] = useState("");
 
   useEffect(() => {
-    if (!user) navigate("/login");
-    else getForms();
-  }, [user]);
+  if (!user) navigate("/login");
+  else getForms();
+}, [user, navigate, getForms]);
+
 
   const getForms = async () => {
     const formList = await fetchForms(user);
