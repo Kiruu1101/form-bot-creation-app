@@ -32,7 +32,7 @@ const WorkSpace = () => {
   useEffect(() => {
   if (!user) navigate("/login");
   else getForms();
-}, [user,navigate, getForms]);
+}, [user, navigate]);
 
   const handleLogout = () => {
     dispatch(logout());
