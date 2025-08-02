@@ -1,0 +1,81 @@
+.chatContainer {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.chatView {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chatPair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.question {
+  font-weight: bold;
+  color: #333;
+}
+
+.answer {
+  color: #555;
+  background-color: #e0e0e0;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input,
+.textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.checkboxLabel {
+  font-size: 14px;
+}
+
+.nextButton {
+  align-self: flex-end;
+  padding: 0.6rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.thankyou {
+  text-align: center;
+  font-size: 18px;
+  color: green;
+  margin-top: 2rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 2rem;
+}

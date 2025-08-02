@@ -7,6 +7,7 @@ import WorkspacePage from "./Pages/WorkspacePage";
 import FormbotPage from "./Pages/FormbotPage";
 import SettingPage from "./Pages/SettingPage";
 import ProtectedRoute from "./Component/ProtectedRoute";
+import PublicForm from "./Pages/PublicForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -35,6 +36,8 @@ function App() {
 
         {/* fallback route */}
         <Route path="*" element={<Homepage />} />
+        {/* Public Form Route */}
+        <Route path="/:formName" element={<PublicForm />} />
       </Routes>
     </>
   );

@@ -42,6 +42,16 @@ const FormBot = () => {
 
     const success = await saveFormToDB(formName, formTitle, fields);
     success ? toast.success("Form saved") : toast.error("Save failed");
+    if (success) {
+
+    // Copy public link to clipboard
+    const form = formName.replace(/\s+/g, "").toLowerCase();
+    const formLink = `${window.location.origin}/${form}`;
+    navigator.clipboard.writeText(formLink);
+    toast.info("Public form link copied to clipboard 📋");
+  } else {
+    toast.error("Save failed ❌");
+  }
   };
 
   return (

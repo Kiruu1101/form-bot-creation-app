@@ -32,6 +32,7 @@ export const deleteForm = async (userEmail, formName) => {
   try {
     const encodedEmail = encodeEmail(userEmail);
     await axios.delete(`${BASE_URL}users/${encodedEmail}/${formName}.json`);
+    await axios.delete(`${BASE_URL}forms/${formName}.json`);
     return true;
   } catch (err) {
     console.error("Error deleting form:", err);
